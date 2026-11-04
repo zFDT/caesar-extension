@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>凯撒加密下载助手</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <span class="header-icon">🔐</span>
+      <h1>凯撒加密下载助手</h1>
+    </div>
+
+    <!-- 环境选择区 -->
+    <div class="section">
+      <label class="section-label" for="envSelect">🌐 环境选择</label>
+      <select id="envSelect" class="select">
+        <option value="dev-cn">🇨🇳 国内开发环境</option>
+        <option value="test-cn" selected>🇨🇳 国内测试环境</option>
+        <option value="pre-cn">🇨🇳 国内预生产环境</option>
+        <option value="test-us">🇺🇸 美国测试环境</option>
+        <option value="pre-us">🇺🇸 美国预生产环境</option>
+        <option value="custom">✏️ 自定义</option>
+      </select>
+      <input type="text" id="customUrl" class="input custom-url hidden"
+             placeholder="输入自定义 Base URL，例如 https://example.com">
+    </div>
+
+    <!-- 偏移量设置 -->
+    <div class="section">
+      <label class="section-label" for="shiftInput">🔢 偏移量（默认 +3）</label>
+      <input type="number" id="shiftInput" class="input shift-input" value="3" min="1" max="25" step="1">
+      <span class="shift-hint">每个字母向后偏移 N 位（字母表循环），数字和特殊字符不变</span>
+    </div>
+
+    <!-- 加密区 -->
+    <div class="section">
+      <label class="section-label" for="rawKey">📝 原始 Key</label>
+      <textarea id="rawKey" class="textarea" rows="3"
+                placeholder="输入要加密的文件 Key，例如：private/model/web/202601/07/1767779856623-DGLD4R.3mf"></textarea>
+      <button id="encryptBtn" class="btn btn-primary">🔐 凯撒加密</button>
+    </div>
+
+    <!-- 结果区 -->
+    <div class="section">
+      <label class="section-label" for="encryptedKey">🔒 加密结果</label>
+      <textarea id="encryptedKey" class="textarea output" rows="3" readonly
+                placeholder="加密结果将显示在这里..."></textarea>
+      <div class="btn-row">
+        <button id="copyBtn" class="btn btn-secondary">📋 复制</button>
+        <button id="downloadBtn" class="btn btn-accent">⬇️ 获取下载链接并下载</button>
+      </div>
+    </div>
+
+    <!-- 状态提示 -->
+    <div id="status" class="status hidden"></div>
+
+    <!-- 历史记录区 -->
+    <div class="section">
+      <div class="history-header">
+        <label class="section-label" style="cursor:pointer" id="historyToggle">📜 历史记录 <span id="historyCount">(0)</span></label>
+        <button id="clearHistoryBtn" class="btn btn-danger btn-sm">🗑️ 清空</button>
+      </div>
+      <div id="historyList" class="history-list">
+        <div class="history-empty">暂无历史记录</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

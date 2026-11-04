@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "凯撒加密下载助手",
+  "version": "1.0.0",
+  "description": "凯撒加密工具 — 支持自定义偏移量、多环境切换、历史记录，对文件 Key 加密后调用下载 API 获取文件",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "凯撒加密下载助手"
+  },
+  "permissions": [
+    "storage",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://iotservice-dev.atomverse.com.cn/*",
+    "https://api-test.atomverse.com.cn/*",
+    "https://api-pre.atomverse.com.cn/*",
+    "https://api-test.atomverse.tech/*",
+    "https://api-pre.atomverse.tech/*",
+    "<all_urls>"
+  ],
+  "icons": {
+    "16": "icons/icon16.svg",
+    "48": "icons/icon48.svg",
+    "128": "icons/icon128.svg"
+  }
+}
