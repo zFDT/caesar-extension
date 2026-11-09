@@ -155,3 +155,20 @@ Content-Type: application/json
 ## 许可
 
 MIT License
+
+## 技术特色与复盘
+
+### 技术亮点
+
+- **Chrome 扩展（Manifest V3）开发**：以 `popup.html` + `popup.js` + `popup.css` 构成弹出窗口交互，`manifest.json` 声明 `chrome.storage.local`（历史记录与偏好持久化）和 `chrome.downloads`（触发下载）权限，无框架依赖、零构建步骤，加载即用。
+- **下载链路加密**：对文件 Key 做凯撒加密（支持 1~25 自定义偏移，默认 +3，字母保持大小写、数字与 `/`、`-`、`.` 等特殊字符原样保留）后，再通过 `POST {baseUrl}/api/3dprint/admin/file/v1/file/downloadWithoutToken` 调用下载接口换取预签名 URL，实现「原始 Key → 加密 Key → 下载地址」的完整闭环，并支持实时预览与一键复制。
+- **环境地址 / API 路径可配置**：通过 `config.js` 注入 `environments`（多环境 Base URL）与 `apiPath`（下载接口路径），配合 `config.example.js` 模板与 `.gitignore` 隔离，可灵活适配国内开发 / 测试 / 预生产及美国测试 / 预生产等多套环境；未配置时退化为「自定义」入口，手动输入任意后端地址即可使用。
+
+### 个人贡献
+
+- 独立开发该 Chrome 扩展：从扩展框架搭建、凯撒加密与下载 API 对接，到多环境配置、历史记录与偏好持久化等交互细节，均由我一人完成并落地为可运行项目。
+
+### 收获与规划
+
+- **收获**：完整实践了浏览器扩展开发全流程（Manifest V3、`chrome.storage` / `chrome.downloads` / Fetch API 的协作），并将「下载链路加密」这一安全需求落实到「Key 加密 + 可配置多环境 + 预签名 URL」的工程实现中，加深了对前端侧轻量加密与配置化管理思路的理解。
+- **规划**：后续可补充密钥轮换与更健壮的加密算法（如 AES）以替代演示用凯撒加密，并考虑将扩展发布到 Chrome Web Store，进一步提升可用性与分发便利性。
