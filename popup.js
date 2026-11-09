@@ -4,17 +4,16 @@
 
 // --- 常量 ---
 
-const ENVIRONMENTS = [
-  { key: 'dev-cn',     label: '🇨🇳 国内开发环境',   url: 'https://iotservice-dev.atomverse.com.cn' },
-  { key: 'test-cn',    label: '🇨🇳 国内测试环境',   url: 'https://api-test.atomverse.com.cn' },
-  { key: 'pre-cn',     label: '🇨🇳 国内预生产环境',  url: 'https://api-pre.atomverse.com.cn' },
-  { key: 'test-us',    label: '🇺🇸 美国测试环境',   url: 'https://api-test.atomverse.tech' },
-  { key: 'pre-us',     label: '🇺🇸 美国预生产环境',  url: 'https://api-pre.atomverse.tech' },
-  { key: 'custom',     label: '✏️ 自定义',         url: '' },
-];
+// 环境与 API 路径统一从 config.js 读取（config.js 由 config.example.js 复制而来）
+// 开源版本默认只提供「自定义」环境，业务环境地址请自行配置
+const ENVIRONMENTS = (typeof ENV_CONFIG !== 'undefined' && ENV_CONFIG.environments)
+  ? ENV_CONFIG.environments
+  : [{ key: 'custom', label: '✏️ 自定义', url: '' }];
 
 const MAX_HISTORY = 20;
-const API_PATH = '/api/3dprint/admin/file/v1/file/downloadWithoutToken';
+const API_PATH = (typeof ENV_CONFIG !== 'undefined' && ENV_CONFIG.apiPath)
+  ? ENV_CONFIG.apiPath
+  : '/api/file/download';
 const STORAGE_KEYS = {
   HISTORY: 'history',
   ENV: 'envPreference',

@@ -12,11 +12,6 @@
     "downloads"
   ],
   "host_permissions": [
-    "https://iotservice-dev.atomverse.com.cn/*",
-    "https://api-test.atomverse.com.cn/*",
-    "https://api-pre.atomverse.com.cn/*",
-    "https://api-test.atomverse.tech/*",
-    "https://api-pre.atomverse.tech/*",
     "<all_urls>"
   ],
   "icons": {
